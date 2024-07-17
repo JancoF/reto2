@@ -5,6 +5,7 @@ const VideoContext = createContext();
 export const VideoProvider = ({ children }) => {
   const [videos, setVideos] = useState([]);
   const [editingVideo, setEditingVideo] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const addVideo = (video) => {
     setVideos([...videos, { ...video, id: Date.now() }]);
@@ -16,14 +17,18 @@ export const VideoProvider = ({ children }) => {
 
   const editVideo = (id, updatedVideo) => {
     setVideos(videos.map(video => video.id === id ? { ...updatedVideo, id } : video));
+    setEditingVideo(null);
+    setIsEditModalOpen(false);
   };
 
   const startEditing = (video) => {
     setEditingVideo(video);
+    setIsEditModalOpen(true);
   };
 
   const stopEditing = () => {
     setEditingVideo(null);
+    setIsEditModalOpen(false);
   };
 
   return (
@@ -34,7 +39,9 @@ export const VideoProvider = ({ children }) => {
       editVideo, 
       editingVideo, 
       startEditing, 
-      stopEditing 
+      stopEditing,
+      isEditModalOpen,
+      setIsEditModalOpen
     }}>
       {children}
     </VideoContext.Provider>

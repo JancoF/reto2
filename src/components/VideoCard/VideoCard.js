@@ -3,10 +3,19 @@ import styled from 'styled-components';
 import { useVideoContext } from '../../videoContext';
 
 const Card = styled.div`
-  background-color: #2C2C2C;
+  background-color: ${props => props.color};
+  border: 2px solid ${props => props.color};
   border-radius: 4px;
   overflow: hidden;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px ${props => props.color}80;
+`;
+
+const Title = styled.h3`
+  color: #FFFFFF;
+  margin: 0.5rem;
+  text-align: center;
 `;
 
 const Image = styled.img`
@@ -15,21 +24,10 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const Info = styled.div`
-  padding: 1rem;
-`;
-
-const Title = styled.h3`
-  color: #FFFFFF;
-  margin: 0 0 0.5rem 0;
-`;
-
 const ButtonContainer = styled.div`
-  position: absolute;
-  top: 5px;
-  right: 5px;
   display: flex;
-  gap: 5px;
+  justify-content: space-around;
+  padding: 0.5rem;
 `;
 
 const Button = styled.button`
@@ -44,19 +42,17 @@ const Button = styled.button`
   }
 `;
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, color }) => {
   const { deleteVideo, startEditing } = useVideoContext();
 
   return (
-    <Card>
+    <Card color={color}>
+      <Title>{video.title}</Title>
       <Image src={video.imageUrl} alt={video.title} />
       <ButtonContainer>
         <Button onClick={() => startEditing(video)}>Editar</Button>
         <Button onClick={() => deleteVideo(video.id)}>Borrar</Button>
       </ButtonContainer>
-      <Info>
-        <Title>{video.title}</Title>
-      </Info>
     </Card>
   );
 };

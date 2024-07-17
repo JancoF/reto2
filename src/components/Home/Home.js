@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoList from '../VideoList/VideoList';
+import Hero from '../Hero/Hero';
 import styled from 'styled-components';
 
 const HomeContainer = styled.div`
@@ -14,8 +15,11 @@ const Title = styled.h1`
 const Home = () => {
   return (
     <HomeContainer>
-      <Title>Videos de AluraFlix</Title>
+       <Hero/>
+      <Title>Videos de AluraFlix</Title> 
+       
       <VideoList />
+   
     </HomeContainer>
   );
 };

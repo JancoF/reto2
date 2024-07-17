@@ -14,8 +14,16 @@ const CategoryTitle = styled.h2`
 
 const VideosGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const categoryColors = {
@@ -39,7 +47,7 @@ const VideoList = () => {
           <CategoryTitle color={categoryColors[category]}>{category}</CategoryTitle>
           <VideosGrid>
             {categoryVideos.map(video => (
-              <VideoCard key={video.id} video={video} />
+              <VideoCard key={video.id} video={video} color={categoryColors[category]} />
             ))}
           </VideosGrid>
         </ListContainer>

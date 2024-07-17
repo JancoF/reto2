@@ -17,6 +17,10 @@ const Logo = styled.img`
 const NavButtons = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -34,7 +38,7 @@ const StyledLink = styled(Link)`
 
 const NewVideoButton = styled(StyledLink)`
   background-color: #2A7AE4;
-  
+
   &:hover {
     background-color: #5595E9;
   }
