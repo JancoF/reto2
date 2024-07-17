@@ -1,0 +1,24 @@
+/* src/pages/Home/Home.css */
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-card {
+    flex: 1 1 calc(33.333% - 1em);
+    margin: 0.5em;
+}
+
+/* Ajustes para laptop */
+@media (max-width: 1024px) {
+    .video-card {
+        flex: 1 1 calc(50% - 1em);
+    }
+}
+
+/* Ajustes para móvil */
+@media (max-width: 768px) {
+    .video-card {
+        flex: 1 1 calc(100% - 1em);
+    }
+}
